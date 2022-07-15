@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="dni" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT ROW_COUNT() AS 'No', tbl_cursos.nombrecurso, tbl_certificaciones.idcertificacion, CONCAT(tbl_personas.nombre, tbl_personas.apellido) AS participante, CONCAT(tbl_instructores.nombre, tbl_instructores.apellido) AS instructor, tbl_cursos.fechainicio, tbl_cursos.fechafinal,tbl_cursos.curid FROM tbl_cursos INNER JOIN tbl_certificaciones ON tbl_certificaciones.idcurso = tbl_cursos.curid INNER JOIN tbl_participantescursos ON tbl_participantescursos.cursoid = tbl_cursos.curid AND tbl_certificaciones.curparid = tbl_participantescursos.curparid INNER JOIN tbl_instructores ON tbl_cursos.instid = tbl_instructores.instid INNER JOIN tbl_personas ON tbl_participantescursos.personaid = tbl_personas.id WHERE tbl_certificaciones.idcertificacion = $P{dni}]]>
+	</queryString>
+	<field name="No" class="java.lang.Long"/>
+	<field name="nombrecurso" class="java.lang.String"/>
+	<field name="idcertificacion" class="java.lang.Integer"/>
+	<field name="participante" class="java.lang.String"/>
+	<field name="instructor" class="java.lang.String"/>
+	<field name="fechainicio" class="java.sql.Date"/>
+	<field name="fechafinal" class="java.sql.Date"/>
+	<field name="curid" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="572" splitType="Stretch">
+			<rectangle radius="25">
+				<reportElement mode="Transparent" x="4" y="0" width="752" height="572"/>
+				<graphicElement>
+					<pen lineWidth="6.0" lineStyle="Double"/>
+				</graphicElement>
+			</rectangle>
+			<image>
+				<reportElement x="277" y="32" width="223" height="60"/>
+				<imageExpression><![CDATA["C:\\proyecto\\pantallacli\\web\\images\\logo2.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="92" width="752" height="52"/>
+				<textElement textAlignment="Center">
+					<font size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Certificado de completacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-2" y="144" width="754" height="49"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[hacemos constar que]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="-4" y="193" width="752" height="51"/>
+				<textElement textAlignment="Center">
+					<font size="28" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{participante}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="257" width="754" height="49"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ha completado el siguiente curso]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="-2" y="306" width="752" height="51"/>
+				<textElement textAlignment="Center">
+					<font size="28" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombrecurso}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-4" y="389" width="754" height="49"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[instructor]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2" y="418" width="752" height="51"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{instructor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="481" width="754" height="49"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de completacion]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="-2" y="507" width="752" height="51"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechafinal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

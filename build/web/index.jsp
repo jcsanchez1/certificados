@@ -3,6 +3,7 @@
 
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.jcsm.entidades.TblPersonas"%>
+<%@include file="/comunes/deshabilitar.jsp" %>
 <%
 
     int respuesta = 0;
@@ -90,11 +91,8 @@
                             <button name="submit" type="submit" class="btn btn-primary">Buscar</button>
 
                         </div>
-                        <br/>
-                        <div class="offset-2 col-8">
-
-                            <button name="reset" onclick="" class="btn btn-secondary">Resetear</button>
-                        </div>                        
+                        <br>
+                        <br>                      
                     </div>
                 </form>
             </div>
@@ -157,8 +155,8 @@
                                             <td><%=a5%></td>
                                             <td><%=a6%></td>
                                             <td><%=a7%></td>
-                                            <td><a href="diploma.jsp?dni=<%=a1%>">Descargar</a></td>                                    
-                                            <td><a href="ver.jsp?dni=<%=a1%>">ver</td> 
+                                            <td><a href="diploma2.jsp?dni=<%=a3%>" target="_blank">Descargar</a></td>                                    
+                                            <td><a href="ver.jsp?dni=<%=a3%>" target="_blank">ver</td> 
                                         </tr>                                            
                                         <%  }  %>
                                     </tbody>                                         
